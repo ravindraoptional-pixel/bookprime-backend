@@ -20,3 +20,16 @@ const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
   console.log("Server running");
 });
+let orders = [];
+
+// Save order
+app.post('/place-order', (req, res) => {
+  const order = req.body;
+  orders.push(order);
+  res.send("Order placed successfully");
+});
+
+// Get all orders (admin)
+app.get('/orders', (req, res) => {
+  res.json(orders);
+});
